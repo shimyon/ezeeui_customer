@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{'saved_address' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+    <ion-list lines="none">
+        <ion-item class="animate__animated animate__fadeInRight"  *ngFor="let item of deliveryLocation">
+            <div class="item_inner d-flex" (click)="selectedAddress(item)">
+                <div class="img_box ion-text-center">
+                    <img src="{{getImageData(item.addressType)}}">
+                </div>
+                <div class="text_box">
+                    <h2>{{item.addressTypeLabel}}</h2>
+                    <p>
+                        {{item.flatFloorBuildingName}}
+                    </p>
+                </div>
+                <div class="selectAddress" *ngIf="item.isDefaultAddress">
+                    
+                    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button size="large" expand="full" class="btn" (click)="add()">+ {{'add_new' | translate}}</ion-button>
+</ion-footer>

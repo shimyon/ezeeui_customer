@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" mode="md">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="title_inner d-flex">
+                <ion-icon class="zmdi zmdi-search end ion-text-end"></ion-icon>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+
+    <div class="store_details" *ngIf="groupData!=null">
+        <h2>{{categoryInfo.categoryName}}</h2>
+        <h4 class="d-flex">
+            <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
+             {{storeData.storeName}}
+        </h4>
+        <!-- <div class="d-flex">
+            <h4 class="d-flex">
+                <ion-icon class="zmdi zmdi-time ion-text-start"></ion-icon>
+                22 MINS
+            </h4>
+
+            <h5 class="d-flex end" (click)="reviews()">
+                <ion-icon class="zmdi zmdi-star ion-text-start"></ion-icon>
+                4.2
+                &nbsp; &nbsp;
+                <span>148 {{'reviews' | translate}}
+                    <ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+                </span>
+            </h5>
+        </div> -->
+    </div>
+<!--
+    <div class="search_box">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_item_or_store' | translate}}"></ion-searchbar>
+    </div>
+-->
+<app-item-category [tab]="tab" (selectedCategory)="onCategoryClick($event)" [groupList]="groupData"></app-item-category>
+</ion-header>
+
+<ion-content fullscreen>
+   <app-item-list [tab]="tab" [itemList]="itemData" (newItemEvent)=actionItem($event) ></app-item-list>
+</ion-content>
+
+<app-cart-item [total]="totalAddCart" *ngIf="totalAddCart!=null"></app-cart-item>

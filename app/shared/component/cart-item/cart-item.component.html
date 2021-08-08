@@ -1,0 +1,9 @@
+<ion-footer class="ion-no-border">
+  <div class="cart_btn" (click)="cart()">
+      <h2 class="d-flex">
+          <img src="assets/images/ic_cart_wt.png">&nbsp; &nbsp;
+          {{total.quantityTotal}} {{'items' | translate}} &nbsp;|&nbsp; {{total.mrpTotal|currency:'₹'}}
+          <span class="end">{{'view_cart' | translate}}</span>
+      </h2>
+  </div>
+</ion-footer>

@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="store-header">
+            Vegetable & Fruits
+        </ion-title>
+    </ion-toolbar>
+    <div class="search_box">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_item_or_store' | translate}}"></ion-searchbar>
+    </div>
+</ion-header>
+
+<ion-content>
+    <ion-list lines="none">
+        <h2>{{storeList.length}} {{'stores_found' | translate}}</h2>
+        <ion-item *ngFor="let item of storeList" (click)="items()" class="animate__animated animate__fadeInRight">
+            <div class="item_inner d-flex">
+                <div class="img_box center_img">
+                    <img src="{{item.imageUrl|asUrl:'store'}}" class="crop_img">
+                </div>
+                <div class="text_box">
+                    <h3>{{item.storeName}}</h3>
+                    <h4 class="d-flex">
+                        <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
+                       {{item.distance}} km <span></span> {{item.cityName}}
+                    </h4>
+
+                    <h4 class="d-flex">
+                        <ion-icon class="zmdi zmdi-time ion-text-start"></ion-icon>
+                        {{item.time}} MINS
+                    </h4>
+
+                    <h5 class="d-flex" *ngIf="item.rating!=null">
+                        <ion-icon class="zmdi zmdi-star ion-text-start"></ion-icon>
+                       {{item.rating}}
+                    </h5>
+                </div>
+            </div>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

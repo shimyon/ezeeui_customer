@@ -1,0 +1,6 @@
+<ion-segment  mode="ios" [(ngModel)]="category" ngDefaultControl (ionChange)="changeCategory($event)" scrollable *ngIf="groupList.length">
+  <ion-segment-button mode="ios" value="{{item.id}}" *ngFor="let item of groupList" >
+      <ion-label>{{item.displayName}}</ion-label>
+  </ion-segment-button>
+ 
+</ion-segment>

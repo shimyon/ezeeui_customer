@@ -1,0 +1,136 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{'set_delivery_location' | translate}}
+        </ion-title>
+    </ion-toolbar>
+    <div class="search_box">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_lcation' | translate}}">
+        </ion-searchbar>
+    </div>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+    <div class="map">
+        <app-map [locationSet]="placeSelect" [setCurrentLocation]="locationReset" [searchInput]="query"
+            (selectedLocation)="selectedLocationData($event)" [mapOptionConfig]="optionMapConfig"
+            (getSearchLocation)="locationSearch($event)"></app-map>
+
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" [ngClass]="fabAction ? 'active' : ''">
+    <form [formGroup]="AddressForm" #formRef="ngForm">
+        <div class="footer_content">
+            <div class="current_location">
+                <ion-icon class="zmdi zmdi-gps-dot" (click)="currentLocation()"></ion-icon>
+            </div>
+            <div class="address">
+                <h2 class="d-flex">
+                    <span class="map_pin"></span>
+                    {{queryText}}
+                </h2>
+            </div>
+
+            <div class="form">
+
+                <ion-list lines="none">
+                    <ion-item lines="none" class="animate__animated animate__fadeInUp">
+                        <div class="item_inner d-flex">
+                            <div class="icon_box ion-text-start"><img src="assets/images/ic_homeact.png"></div>
+                            <div class="input_box">
+                                <ion-label mode="md" position="stacked">{{"flat_floor_building_name" | translate}}
+                                </ion-label>
+                                <ion-input mode="md" formControlName="flat_building_name"></ion-input>
+                            </div>
+
+                        </div>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.flat_building_name">
+                            <div class="error-message"
+                                *ngIf="AddressForm.get('flat_building_name').hasError(validation.type) && (AddressForm.get('flat_building_name').dirty || AddressForm.get('flat_building_name').touched ||isValid)">
+                                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <ion-item lines="none" class="animate__animated animate__fadeInUp">
+                        <div class="item_inner d-flex">
+                            <div class="icon_box ion-text-start"><img src="assets/images/ic_droppointact.png"></div>
+                            <div class="input_box">
+                                <ion-label mode="md" position="stacked">{{"how_to_reach_optional" | translate}}
+                                </ion-label>
+                                <ion-input mode="md" formControlName="reach_optional"></ion-input>
+                            </div>
+
+                        </div>
+                    </ion-item>
+
+                    <ion-item lines="none" class="animate__animated animate__fadeInUp">
+                        <div class="item_inner d-flex">
+                            <div class="icon_box ion-text-start"><img src="assets/images/ic_phone.png"></div>
+                            <div class="input_box">
+                                <ion-label mode="md" position="stacked">{{"contact_details_optional" | translate}}
+                                </ion-label>
+                                <ion-input mode="md" type="tel" formControlName="phoneno" placeholder="" maxlength="10">
+                                </ion-input>
+                            </div>
+
+                        </div>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.phoneno">
+                            <div class="error-message"
+                                *ngIf="AddressForm.get('phoneno').hasError(validation.type) && (AddressForm.get('phoneno').dirty || AddressForm.get('phoneno').touched)">
+                                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="address_title">
+                        <h3>{{"save_address_as" | translate}}</h3>
+                        <ion-radio-group>
+                            <ion-row *ngIf="!other">
+                                <ion-col size="4" *ngFor="let item of actionList.Save_Address" (click)="saveAddress(item)">
+                                    <ion-item lines="none">
+                                        <ion-radio slot="start" value="{{item.value}}"></ion-radio>
+                                        <ion-label class="d-flex">
+                                            <div class="img_container">
+                                                <div class="img_box">
+                                                    <img src="{{item.image1}}">
+                                                    <img src="{{item.image2}}">
+                                                </div>
+                                                <h2>{{item.text | translate}}</h2>
+                                            </div>
+                                        </ion-label>
+                                    </ion-item>
+                                </ion-col>
+
+                            </ion-row>
+
+                        </ion-radio-group>
+                    </div>
+                    <ion-item lines="none" class="animate__animated animate__fadeInUp" *ngIf="other">
+                        <div class="item_inner d-flex">
+                            <div class="icon_box ion-text-start"><img src="assets/images/ic_homeact.png"></div>
+                            <div class="input_box">
+                                <ion-label mode="md" position="floating" class="fl_left" (click)="other=!other">
+                                    {{"cancel" | translate}}</ion-label>
+                                <ion-input mode="md" type="text" placeholder="" formControlName="other_add"></ion-input>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+
+            </div>
+        </div>
+        <ion-button size="large" expand="full" class="btn btnA" (click)="tabs()" [disabled]="!(AddressForm.valid && isValidButton)">{{'continue' |
+            translate}}</ion-button>
+        <ion-button size="large" expand="full" class="btn btnB" (click)="toggleFab()" [disabled]="IsButton">{{
+            (IsButton?'donot_delivery':'continue') | translate}}
+        </ion-button>
+    </form>
+</ion-footer>

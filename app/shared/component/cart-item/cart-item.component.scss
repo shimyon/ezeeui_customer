@@ -1,0 +1,32 @@
+ion-footer {
+    position: absolute !important;
+    bottom: 0;
+    .cart_btn {
+        background: var(--primary);
+        padding: 13px 20px;
+        overflow: hidden;
+        width: 100%;
+
+        h2 {
+            margin: 0;
+            color: var(--white);
+            font-weight: 400;
+            font-size: 0.95rem;
+
+            img {
+                width: 23px;
+            }
+
+            span {
+                &.end {
+                    background: var(--white);
+                    border-radius: 50px;
+                    font-weight: 500;
+                    color: var(--primary);
+                    padding: 8px 29px;
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}

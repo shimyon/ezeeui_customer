@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ic-head">
+           
+        </ion-title>
+    </ion-toolbar>
+    <div class="store_details" *ngIf="storeDetail!=null">
+        <h2> {{storeDetail.storeName}}</h2>
+        <h4 class="d-flex">
+            <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
+            <!-- 6.4 km | Union Market -->
+            {{storeDetail.cityName}}
+        </h4>
+        <div class="d-flex">
+            <h4 class="d-flex">
+                <ion-icon class="zmdi zmdi-time ion-text-start"></ion-icon>
+                22 MINS
+            </h4>
+
+            <h5 class="d-flex end" (click)="reviews()">
+                <ion-icon class="zmdi zmdi-star ion-text-start"></ion-icon>
+                {{storeDetail.rating}}
+                &nbsp; &nbsp;
+                <span>148 {{'reviews' | translate}}
+                    <ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+                </span>
+            </h5>
+        </div>
+    </div>
+    <div class="search_box ic-search">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_item_or_store' | translate}}"></ion-searchbar>
+    </div>
+</ion-header>
+
+<ion-content class="item-cat-section">
+    <ion-title>What are you looking for</ion-title>
+    <ion-list lines="none" class="mt-2 flex-div">
+
+        <ion-item (click)="onCategory(item)" class="animate__animated animate__fadeInRight ics" *ngFor="let item of categoryList">
+            <div class="item_inner flex-dir">
+                <div class="img_box center_img">
+                    <img src="{{item.imageUrl|asUrl:'category'}}" alt="img" class="crop_img">
+                    
+                </div>
+                <div class="text_box">
+                    <h4>{{item.categoryName}}</h4>
+                </div>
+            </div>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
