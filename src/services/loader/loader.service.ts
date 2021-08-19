@@ -19,7 +19,6 @@ export class LoaderService {
 
     // sometimes there's delay in finding the loader. so check if the loader is closed after one second. if not closed proceed to close again
     setTimeout(() => {
-      debugger
       this.checkAndCloseLoader()
     }, 2000);
   }

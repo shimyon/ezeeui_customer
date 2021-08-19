@@ -7,7 +7,7 @@
                         <div class="item_inner d-flex" (click)="clickAddress()">
                             <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
                             {{'home' | translate}}
-                            
+
                             <!-- <ion-icon class="zmdi zmdi-chevron-down ion-text-end"></ion-icon> -->
                         </div>
                     </ion-item>
@@ -15,7 +15,7 @@
                 <span class="end cart_icon" (click)="cart()">
                     <img src="assets/images/ic_cart_blk.png" class="light-theme-icon">
                     <img src="assets/images/ic_cart_wt.png" class="dark-theme-icon">
-                    <ion-badge>0</ion-badge>
+                    <ion-badge>{{orderItems}}</ion-badge>
                 </span>
             </div>
         </ion-title>
@@ -30,7 +30,7 @@
 
 <ion-content>
     <div class="item-container animate__animated animate__fadeInUp">
-        <h3><span>{{'got_delivered'  | translate}}</span></h3>
+        <h3><span>{{'got_delivered' | translate}}</span></h3>
         <div class="hthumb-section" *ngIf="serviceList.length">
             <div *ngFor="let item of serviceList" class="hthumb-service" (click)="stores(item.id)">
                 <div class="hthumb hthumb1" *ngIf="item.isPrimary">

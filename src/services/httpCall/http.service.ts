@@ -165,7 +165,6 @@ export class HttpService {
 
 
   getHeaderToken = async () => {
-    debugger;
     const headerToken = await this.nativeStorage.getNative(ACTION_TYPE.ACCESS_TOKEN);
     const header = {
       Authorization: 'Bearer ' + headerToken

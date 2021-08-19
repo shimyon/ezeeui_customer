@@ -16,6 +16,8 @@ const { AllInOneSDK } = Plugins;
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+  defaultAddress;
+  deliveryLocation = [];
   shopingCart: any = {
     items: []
   };
@@ -33,12 +35,14 @@ export class CartPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger
+
+  }
+
+  ionViewDidEnter() {
     const isPushNotificationsAvailable = Capacitor.isPluginAvailable('AllInOneSDK');
     if (isPushNotificationsAvailable) {
 
     }
-    debugger
     this.$cart.apiData$.subscribe(res => {
       if (res != null) {
         debugger;
@@ -46,14 +50,30 @@ export class CartPage implements OnInit {
         this.paymentInfo = this.shopingCart['shopingCartSummary'];
       }
     });
-
+    this.getSetAddress();
     console.log(this.shopingCart)
   }
 
+  LoadData() {
 
-  // saved_addresses() {
-  //    this.route.navigate(['./saved-addresses']);
-  //  }  
+  }
+
+  getSetAddress = async () => {
+    const header = await this.$http.getHeaderToken();
+    this.$http.httpCall(true).get(this.$api.goTo().getCustomerAddress(), {}, header)
+      .then((res: any) => {
+        if (res.status == 200) {
+          this.deliveryLocation = JSON.parse(res.data).response;
+          this.defaultAddress = this.deliveryLocation.find(f => f.isDefaultAddress);
+        }
+      });
+  }
+
+
+  OpenAddress() {
+    this.route.navigate(['./saved-addresses', { openFrom: 'cart' }]);
+  }
+
   payment() {
     debugger
     this.StartTransaction();

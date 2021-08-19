@@ -1,7 +1,9 @@
 import { IfStmt } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { resolve } from 'dns';
 import { StorageService } from 'src/services/storage/storage.service';
 
 import { HttpService } from '../../../services/httpCall/http.service';
@@ -15,6 +17,7 @@ import { message, appConfig, Address } from '../../utils';
   styleUrls: ['./set-location.page.scss'],
 })
 export class SetLocationPage implements OnInit {
+  openFrom;
   fabAction = false;
   actionList = appConfig;
   queryText: any;
@@ -36,14 +39,16 @@ export class SetLocationPage implements OnInit {
   addressType: any;
   isValid = false;
   constructor(private navCtrl: NavController,
+    private activeRoute: ActivatedRoute,
     private $http: HttpService,
     private $api: ApiRouting,
     private $toast: ToastService,
     private formBuilder: FormBuilder,
-    private $storage:StorageService,
+    private $storage: StorageService,
     private validMessage: validationMessage) { }
 
   ngOnInit() {
+    this.openFrom = this.activeRoute.snapshot.paramMap.get('openFrom');
     this.AddressForm = this.formBuilder.group({
       flat_building_name: ['', [Validators.required]],
       reach_optional: [''],
@@ -56,7 +61,7 @@ export class SetLocationPage implements OnInit {
   toggleFab() {
     this.fabAction = !this.fabAction;
   }
-  tabs=async()=> {
+  tabs = async () => {
 
     if (!this.AddressForm.valid) {
       this.isValid = true;
@@ -75,29 +80,41 @@ export class SetLocationPage implements OnInit {
       landmark: this.selectedLocationPoint["landmark"] != null ? this.selectedLocationPoint["landmark"] : "",
       latitude: this.selectedLocationPoint["latitude"] != null ? JSON.stringify(this.selectedLocationPoint["latitude"]) : "",
       longitude: this.selectedLocationPoint["longitude"] != null ? JSON.stringify(this.selectedLocationPoint["longitude"]) : "",
-       pinCode: this.selectedLocationPoint["pinCode"]!=null?this.selectedLocationPoint["pinCode"]:"",
-     
+      pinCode: this.selectedLocationPoint["pinCode"] != null ? this.selectedLocationPoint["pinCode"] : "",
+
     }
     const header = await this.$http.getHeaderToken();
     this.$http.httpCall(true).post(this.$api.goTo().createCustomerAddress(), payload, header).then((res: any) => {
       if (res.status == 200) {
-        this.navCtrl.navigateRoot(['./tabs']);
-        this.getSetAddress();
+        this.GoToHome();
       }
     });
-
   }
 
-  getSetAddress=async()=> {
-    const header = await this.$http.getHeaderToken();
-    this.$http.httpCall(true).get(this.$api.goTo().getCustomerAddress(), {}, header)
-      .then((res: any) => {
-        if (res.status == 200) {
-          const addressInfo=JSON.parse(res.data).response;
-          this.$storage.setAddress(addressInfo);
-        } 
-      });
-}
+  async GoToHome() {
+    await this.getSetAddress();
+    if (this.openFrom) {
+      if (this.openFrom == 'cart') {
+        this.navCtrl.navigateForward(['./cart']);
+      }
+    } else {
+      this.navCtrl.navigateRoot(['./tabs']);
+    }
+  }
+
+  getSetAddress = async () => {
+    return new Promise(async (result, reject) => {
+      const header = await this.$http.getHeaderToken();
+      this.$http.httpCall(true).get(this.$api.goTo().getCustomerAddress(), {}, header)
+        .then((res: any) => {
+          if (res.status == 200) {
+            const addressInfo = JSON.parse(res.data).response;
+            this.$storage.setAddress(addressInfo);
+          }
+          result(true);
+        }, reject);
+    });
+  }
 
   SearchPlace() {
     if (this.queryText !== '') {
@@ -139,9 +156,9 @@ export class SetLocationPage implements OnInit {
     this.count++;
   }
 
-  getLocationExists=async(pincode)=> {
+  getLocationExists = async (pincode) => {
     const header = await this.$http.getHeaderToken();
-   // pincode = 173023;
+    // pincode = 173023;
     this.$http.httpCall(true).get(this.$api.goTo().pinCodeLookup(pincode), {}, header)
       .then((res: any) => {
         let data = JSON.parse(res.data).response;
