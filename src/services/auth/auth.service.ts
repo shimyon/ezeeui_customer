@@ -17,16 +17,16 @@ export class AuthService {
   authSubject = new BehaviorSubject(null);
   userActionOnline = new BehaviorSubject(null);
   decodedToken: any;
-  accessToken:string;
-  refresh:string;
-  userName:string;
+  accessToken: string;
+  refresh: string;
+  userName: string;
   constructor(
     private plt: Platform,
     private $native: NativeDataService,
-    private $http:HttpClient,
-    private $api:ApiRouting
+    private $http: HttpClient,
+    private $api: ApiRouting
 
-    ) {
+  ) {
 
     this.plt.ready().then(() => {
       this.getToken();
@@ -36,13 +36,13 @@ export class AuthService {
   getToken() {
 
     this.$native.getNative(ACTION_TYPE.ACCESS_TOKEN).then(token => {
-      if (typeof(token)==="string" ) {
-       
+      if (typeof (token) === "string") {
+
         this.decodedToken = this.getDecodedAccessToken(token);
-        this.accessToken=token;
+        this.accessToken = token;
         this.userName = this.decodedToken.UserName
-        
-         if (this.decodedToken.exp <new Date().getTime() / 1000) {
+
+        if (this.decodedToken.exp < new Date().getTime() / 1000) {
           this.authSubject.next(true);
         } else {
           this.authSubject.next(false);
@@ -61,33 +61,33 @@ export class AuthService {
     }
   }
   async getHeaderToken() {
-   let token =await this.$native.getNative(ACTION_TYPE.ACCESS_TOKEN);
-      return token;
- 
- }
- async getRefershtoken() {
-  let refreshToken =await this.$native.getNative(ACTION_TYPE.REFRESH_TOKEN_KEY);
-     return refreshToken;
+    let token = await this.$native.getNative(ACTION_TYPE.ACCESS_TOKEN);
+    return token;
 
-}
-    refreshToken () {
-  //  let decodeData=this.getDecodedAccessToken(await this.getHeaderToken())
-  //  let data= this.$native.getNative(ACTION_TYPE.REFRESH_TOKEN_KEY).then(refreshToken=>{
-  //    return refreshToken;
-  //   })
-    let payload={
-      userName:this.userName,
-      accessToken:this.getHeaderToken(),
-      refreshToken:this.getRefershtoken()
+  }
+  async getRefershtoken() {
+    let refreshToken = await this.$native.getNative(ACTION_TYPE.REFRESH_TOKEN_KEY);
+    return refreshToken;
+
+  }
+  refreshToken() {
+    //  let decodeData=this.getDecodedAccessToken(await this.getHeaderToken())
+    //  let data= this.$native.getNative(ACTION_TYPE.REFRESH_TOKEN_KEY).then(refreshToken=>{
+    //    return refreshToken;
+    //   })
+    let payload = {
+      userName: this.userName,
+      accessToken: this.getHeaderToken(),
+      refreshToken: this.getRefershtoken()
     }
 
-  return this.$http.post(this.$api.goTo().refreshToken(),payload).pipe(tap((tokens: any) => {
-    this.$native.setNative(ACTION_TYPE.REFRESH_TOKEN_KEY,tokens["refreshToken"]);
+    return this.$http.post(this.$api.goTo().refreshToken(), payload).pipe(tap((tokens: any) => {
+      this.$native.setNative(ACTION_TYPE.REFRESH_TOKEN_KEY, tokens["refreshToken"]);
       this.$native.setNative(ACTION_TYPE.ACCESS_TOKEN, tokens["accessToken"])
-  }));
+    }));
 
-  
-}
+
+  }
 
   // To Check LoggedIn state
   isLoggedIn() {

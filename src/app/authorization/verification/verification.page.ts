@@ -45,13 +45,14 @@ export class VerificationPage implements OnInit {
 
         this.$nativeStorage.setNative(ACTION_TYPE.REFRESH_TOKEN_KEY, tokenDetail.refreshToken);
         this.$nativeStorage.setNative(ACTION_TYPE.ACCESS_TOKEN, tokenDetail.accessToken).then(nativeRes => {
-          this.route.navigate(['./set-location']);
+          // this.route.navigate(['./set-location']);
+
         });
       }
     }, (err) => {
       const toaster = {
         header: '',
-        message:'Invalid OTP',
+        message: 'Invalid OTP',
         position: 'top'
       };
       this.$toast.show(toaster);
