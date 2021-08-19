@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -9,11 +8,11 @@ import { MyEvent } from 'src/services/myevent.services';
 import { Constants } from 'src/models/contants.models';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
-import { AuthService } from 'src/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/services/httpCall/http.service';
 import { ApiRouting } from './shared';
 import { StorageService } from 'src/services/storage/storage.service';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -29,14 +28,19 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
-    private auth:AuthService,
+    private auth: AuthService,
     private router: Router,
-    private geolocation: Geolocation,private myEvent: MyEvent,private uniqueDeviceID: UniqueDeviceID,private $storage:StorageService , private $http:HttpService,private $api:ApiRouting) {
+    private geolocation: Geolocation,
+    private myEvent: MyEvent,
+    private uniqueDeviceID: UniqueDeviceID,
+    private $storage: StorageService,
+    private $http: HttpService,
+    private $api: ApiRouting
+  ) {
     this.initializeApp();
     this.myEvent.getLanguageObservable().subscribe(value => {
       this.navCtrl.navigateRoot(['./']);
       this.globalize(value);
-    
     });
   }
 
@@ -45,11 +49,12 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.uniqueDeviceID.get()
-      .then((uuid: any) => console.log("UI device id",uuid))
-      .catch((error: any) => console.log(error));
+        .then((uuid: any) => console.log("UI device id", uuid))
+        .catch((error: any) => console.log(error));
       let defaultLang = window.localStorage.getItem(Constants.KEY_DEFAULT_LANGUAGE);
       this.globalize(defaultLang);
-      this.auth.authSubject.subscribe((res)=>{
+      this.auth.authSubject.subscribe((res) => {
+        debugger
         if (res != null) {
           if (res) {
             this.router.navigate(['./tabs']);
@@ -59,21 +64,21 @@ export class AppComponent {
           }
         }
       });
-      
       this.setCurrentLocation();
     });
   }
+
   async getSetAddress() {
     const header = await this.$http.getHeaderToken();
     console.log(header)
     this.$http.httpCall(false).get(this.$api.goTo().getCustomerAddress(), {}, header)
       .then((res: any) => {
         if (res.status == 200) {
-          const addressInfo=JSON.parse(res.data);
+          const addressInfo = JSON.parse(res.data);
           this.$storage.setAddress(addressInfo);
-        } 
+        }
       });
-}
+  }
 
   globalize(languagePriority) {
     this.translate.setDefaultLang("en");
@@ -101,6 +106,7 @@ export class AppComponent {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
+
   setCurrentLocation() {
     this.geolocation.getCurrentPosition().then((res) => {
       console.log(' ===== LOCATION -==-==== ', res.coords.latitude);

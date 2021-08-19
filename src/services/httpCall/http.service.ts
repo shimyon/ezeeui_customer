@@ -13,7 +13,7 @@ import { LoaderService } from '../loader/loader.service';
 export class HttpService {
   API_BASE: string = environment.API_URL;
   constructor(
-   private nativeStorage: NativeDataService,
+    private nativeStorage: NativeDataService,
     private http: HTTP,
     private toaster: ToastService,
     private loader: LoaderService
@@ -22,13 +22,13 @@ export class HttpService {
   }
 
 
-   setToken=async(returnToken)=> {
+  setToken = async (returnToken) => {
     return await this.nativeStorage.setNative(ACTION_TYPE.ACCESS_TOKEN, { token: returnToken }).then(res => {
       return res;
     });
   }
 
-   getToken=async()=> {
+  getToken = async () => {
     const token = await this.nativeStorage.getNative(ACTION_TYPE.ACCESS_TOKEN);
     return token;
   }
@@ -52,7 +52,7 @@ export class HttpService {
           }).catch(err => {
             this.printError(err);
             if (isLoading) {
-             this.loader.dismiss();
+              this.loader.dismiss();
             }
             reject(err);
           });
@@ -87,7 +87,7 @@ export class HttpService {
           }).catch(err => {
             this.printError(err);
             if (isLoading) {
-           this.loader.dismiss();
+              this.loader.dismiss();
             }
             reject(err);
           });
@@ -115,25 +115,29 @@ export class HttpService {
 
 
   printError(err) {
-    let message;
-    console.log(': ====  ERROR ==== ', err, ' === STATUS ==== ', err.status);
-    const error = JSON.parse(err.error);
-  
-    if (err.status === 401) {
-      message = error.message.message;
-    } else if (err.status === 409) {
-      message = error.message;
-    } else if (err.status === 400) {
-      message = error.errors[0];
-    } else {
-      message = 'Something went wrong.';
+    try {
+      let message;
+      console.log(': ====  ERROR ==== ', err, ' === STATUS ==== ', err.status);
+      const error = JSON.parse(err.error);
+
+      if (err.status === 401) {
+        message = error.message.message;
+      } else if (err.status === 409) {
+        message = error.message;
+      } else if (err.status === 400) {
+        message = error.errors[0];
+      } else {
+        message = 'Something went wrong.';
+      }
+      const toaster = {
+        header: 'Opps!',
+        message,
+        position: 'top'
+      };
+      // this.toaster.show(toaster);
+    } catch (ex) {
+      console.log(ex);
     }
-    const toaster = {
-      header: 'Opps!',
-      message,
-      position: 'top'
-    };
-   // this.toaster.show(toaster);
   }
 
   successMessage(res: any, success: string) {
@@ -160,9 +164,8 @@ export class HttpService {
 
 
 
-   getHeaderToken=async()=> {
-     debugger;
-    const headerToken =   await this.nativeStorage.getNative(ACTION_TYPE.ACCESS_TOKEN);
+  getHeaderToken = async () => {
+    const headerToken = await this.nativeStorage.getNative(ACTION_TYPE.ACCESS_TOKEN);
     const header = {
       Authorization: 'Bearer ' + headerToken
     };

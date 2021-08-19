@@ -20,7 +20,6 @@ export class NativeDataService {
     });
   }
 
-
   getNative(action) {
     console.log(' ==== ACTION GET ==== ', action);
     return this.nativeStorage.getItem(action)
@@ -36,10 +35,6 @@ export class NativeDataService {
       );
   }
 
- 
-
-
-  
   deleteNative(action) {
     console.log('-----Action Delete--------', action);
     return this.nativeStorage.remove(action).then(data => {

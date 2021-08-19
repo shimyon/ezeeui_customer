@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart-item.component.scss'],
 })
 export class CartItemComponent implements OnInit {
-@Input() total:any;
-  constructor(  private route: Router) { }
+  @Input() total: any;
+  constructor(private route: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
   cart() {
-    
     this.route.navigate(['./cart']);
   }
+
 }

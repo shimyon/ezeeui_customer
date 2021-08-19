@@ -35,23 +35,25 @@ export class VerificationPage implements OnInit {
   ionViewDidEnter() {
     this.intervalTimer();
   }
-  set_location() {
 
+  set_location() {
     let payload = this.getverificationOtp;
     this.$http.httpCall().post(this.$api.goTo().loginUsingOtp(), payload, {}).then((res: any) => {
       if (res.status === 200) {
         console.log(res.response);
         const tokenDetail = JSON.parse(res.data).response;
-
         this.$nativeStorage.setNative(ACTION_TYPE.REFRESH_TOKEN_KEY, tokenDetail.refreshToken);
         this.$nativeStorage.setNative(ACTION_TYPE.ACCESS_TOKEN, tokenDetail.accessToken).then(nativeRes => {
-          this.route.navigate(['./set-location']);
+          // this.route.navigate(['./set-location']);
+          // this.route.navigate(['./saved-addresses']);
+          this.route.navigateByUrl('/saved-addresses', { replaceUrl: true })
+
         });
       }
     }, (err) => {
       const toaster = {
         header: '',
-        message:'Invalid OTP',
+        message: 'Invalid OTP',
         position: 'top'
       };
       this.$toast.show(toaster);

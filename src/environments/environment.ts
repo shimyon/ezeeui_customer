@@ -7,8 +7,9 @@ export const environment = {
   // API_URL:'https://ezzeisdevapp.azurewebsites.net',
   API_URL: 'http://thakurethan-001-site1.dtempurl.com',
   paytm: {
-    MerchantID: "LSaDij49380566394419",
-    Key: "@%QzL_Mszf5SK48B"
+    MerchantID: "nTdwNG42786221736985",
+    Key: "#lwdRC1dz2tvdSaA",
+    callbackurl: "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID="
   }
 
 };
