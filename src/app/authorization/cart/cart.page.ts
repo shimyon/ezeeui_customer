@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { VariationSelectionPage } from '../variation-selection/variation-selection.page';
 import { CartService } from '../../../services/storage/cart.service'
-import { Capacitor, Plugins, registerWebPlugin } from "@capacitor/core";
 import { environment } from '../../../environments/environment';
 import { HttpService } from '../../../services/httpCall/http.service';
 import { StorageService } from '../../../services/storage/storage.service';

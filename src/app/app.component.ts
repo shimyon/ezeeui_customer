@@ -13,8 +13,8 @@ import { HttpService } from 'src/services/httpCall/http.service';
 import { ApiRouting } from './shared';
 import { StorageService } from 'src/services/storage/storage.service';
 import { AuthService } from '../services/auth/auth.service';
-import { Capacitor, Plugins, registerWebPlugin } from "@capacitor/core";
-import { AllInOneSDK } from 'capacitor-paytm-allinone';
+// import { Capacitor, Plugins, registerWebPlugin } from "@capacitor/core";
+// import { AllInOneSDK } from 'capacitor-paytm-allinone';
 // const { AllInOneSDK } = Plugins;
 
 @Component({
@@ -105,8 +105,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-
-    // registerWebPlugin(AllInOneSDK);
 
 
     const path = window.location.pathname.split('folder/')[1];
