@@ -25,6 +25,7 @@ export class CartPage implements OnInit {
   orderId: any;
   callbackUrl: any;
   txnAmount: any;
+  txnToken: any;
   constructor(
     private route: Router,
     private modalController: ModalController,
@@ -39,10 +40,10 @@ export class CartPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    const isPushNotificationsAvailable = Capacitor.isPluginAvailable('AllInOneSDK');
-    if (isPushNotificationsAvailable) {
+    // const isPushNotificationsAvailable = Capacitor.isPluginAvailable('AllInOneSDK');
+    // if (isPushNotificationsAvailable) {
 
-    }
+    // }
     this.$cart.apiData$.subscribe(res => {
       if (res != null) {
         debugger;
@@ -96,17 +97,19 @@ export class CartPage implements OnInit {
           this.orderId = response.body.orderId;
           this.callbackUrl = response.body.orderId;
           this.txnAmount = response.body.txnAmount;
+          this.txnToken = response.body.txnToken;
+          this.readyForPay();
         }
       });
   }
 
-  async startTransaction() {
+  async readyForPay() {
     let response = await AllInOneSDK.startTransaction({
       mid: environment.paytm.MerchantID,
       amount: this.txnAmount,
       orderId: this.orderId,
       callbackUrl: this.callbackUrl,
-      txnToken: 'txnToken',
+      txnToken: this.txnToken,
       isStaging: !environment.production,
       restrictAppInvoke: true
     });
