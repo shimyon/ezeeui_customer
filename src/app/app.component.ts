@@ -13,6 +13,10 @@ import { HttpService } from 'src/services/httpCall/http.service';
 import { ApiRouting } from './shared';
 import { StorageService } from 'src/services/storage/storage.service';
 import { AuthService } from '../services/auth/auth.service';
+import { Capacitor, Plugins, registerWebPlugin } from "@capacitor/core";
+import { AllInOneSDK } from 'capacitor-paytm-allinone';
+// const { AllInOneSDK } = Plugins;
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -101,6 +105,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
+
+    // registerWebPlugin(AllInOneSDK);
+
+
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
