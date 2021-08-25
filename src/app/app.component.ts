@@ -36,7 +36,7 @@ export class AppComponent {
     private uniqueDeviceID: UniqueDeviceID,
     private $storage: StorageService,
     private $http: HttpService,
-    private $api: ApiRouting
+    private $api: ApiRouting,
   ) {
     this.initializeApp();
     this.myEvent.getLanguageObservable().subscribe(value => {

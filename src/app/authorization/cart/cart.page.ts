@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { VariationSelectionPage } from '../variation-selection/variation-selection.page';
 import { CartService } from '../../../services/storage/cart.service'
 import { Capacitor, Plugins, registerWebPlugin } from "@capacitor/core";
@@ -8,7 +8,8 @@ import { environment } from '../../../environments/environment';
 import { HttpService } from '../../../services/httpCall/http.service';
 import { StorageService } from '../../../services/storage/storage.service';
 import { ApiRouting } from '../../shared';
-const { AllInOneSDK } = Plugins;
+// const { AllInOneSDK } = Plugins;
+import { AllInOneSDK } from '@ionic-native/all-in-one-sdk/ngx';
 
 @Component({
   selector: 'app-cart',
@@ -23,27 +24,23 @@ export class CartPage implements OnInit {
   };
   paymentInfo: any;
   orderId: any;
-  callbackUrl: any;
   txnAmount: any;
   txnToken: any;
   constructor(
+    private Paytm: AllInOneSDK,
     private route: Router,
     private modalController: ModalController,
     private $cart: CartService,
     private $api: ApiRouting,
     private $http: HttpService,
-    private $storageService: StorageService
+    private $storageService: StorageService,
+    private platform: Platform
   ) { }
 
   ngOnInit() {
-
   }
 
   ionViewDidEnter() {
-    // const isPushNotificationsAvailable = Capacitor.isPluginAvailable('AllInOneSDK');
-    // if (isPushNotificationsAvailable) {
-
-    // }
     this.$cart.apiData$.subscribe(res => {
       if (res != null) {
         debugger;
@@ -52,11 +49,6 @@ export class CartPage implements OnInit {
       }
     });
     this.getSetAddress();
-    console.log(this.shopingCart)
-  }
-
-  LoadData() {
-
   }
 
   getSetAddress = async () => {
@@ -70,15 +62,12 @@ export class CartPage implements OnInit {
       });
   }
 
-
   OpenAddress() {
     this.route.navigate(['./saved-addresses', { openFrom: 'cart' }]);
   }
 
   payment() {
-    debugger
     this.StartTransaction();
-    // this.route.navigate(['./payment']);
   }
 
   variation_selection() {
@@ -95,8 +84,7 @@ export class CartPage implements OnInit {
         if (res.status == 200) {
           let response = JSON.parse(res.data).response;
           this.orderId = response.body.orderId;
-          this.callbackUrl = response.body.orderId;
-          this.txnAmount = response.body.txnAmount;
+          this.txnAmount = response.body.transAmount;
           this.txnToken = response.body.txnToken;
           this.readyForPay();
         }
@@ -104,14 +92,18 @@ export class CartPage implements OnInit {
   }
 
   async readyForPay() {
-    let response = await AllInOneSDK.startTransaction({
+    this.Paytm.startTransaction({
       mid: environment.paytm.MerchantID,
       amount: this.txnAmount,
       orderId: this.orderId,
-      callbackUrl: this.callbackUrl,
+      callbackUrl: `${environment.paytm.callbackurl + '' + this.orderId}`,
       txnToken: this.txnToken,
       isStaging: !environment.production,
       restrictAppInvoke: true
+    }).then(res => {
+      debugger
+    }, err => {
+      debugger
     });
   }
 }

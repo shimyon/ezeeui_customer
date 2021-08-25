@@ -8,15 +8,17 @@ import { IonicModule } from '@ionic/angular';
 import { CartPageRoutingModule } from './cart-routing.module';
 
 import { CartPage } from './cart.page';
+import { AllInOneSDK } from '@ionic-native/all-in-one-sdk/ngx';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TranslateModule,     
+    TranslateModule,
     CartPageRoutingModule
   ],
+  providers: [AllInOneSDK],
   declarations: [CartPage]
 })
-export class CartPageModule {}
+export class CartPageModule { }
