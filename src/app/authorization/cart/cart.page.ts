@@ -98,10 +98,10 @@ export class CartPage implements OnInit {
       txnToken: this.txnToken,
       isStaging: !environment.production,
       restrictAppInvoke: true
-    }).then(res => {
-      debugger
-    }, err => {
-      debugger
+    }).then(resp => {
+      alert(JSON.parse(resp.response));
+    }, error => {
+      alert(error);
     });
   }
 }
