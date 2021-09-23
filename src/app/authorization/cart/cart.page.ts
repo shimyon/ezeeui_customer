@@ -99,8 +99,15 @@ export class CartPage implements OnInit {
       isStaging: !environment.production,
       restrictAppInvoke: true
     }).then(resp => {
-      alert(JSON.parse(resp.response));
+      debugger
+      let response = JSON.parse(resp.response);
+      if (response.STATUS == "TXN_SUCCESS") {
+        this.route.navigate(['./cart/paymentsuccess', { data: resp.response }], { replaceUrl: true });
+      } else {
+        alert("Trasaction Failed!");
+      }
     }, error => {
+      debugger
       alert(error);
     });
   }

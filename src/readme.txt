@@ -36,6 +36,6 @@ https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=<order_id>
 
 
 
-https://developer.paytm.com/docs/all-in-one-sdk/hybrid-apps/ionic/
+https://developer.paytm.com/docs/all-in-one-sdk/hybrid-apps/cordova/?ref=allInOneMerchantIntegration
 
 https://developer.paytm.com/docs/api/initiate-transaction-api/?ref=payments

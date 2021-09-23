@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // API_URL:'https://ezzeisdevapp.azurewebsites.net',
-  API_URL: 'http://thakurethan-001-site1.dtempurl.com',
+  // API_URL: 'http://thakurethan-001-site1.dtempurl.com',
+  API_URL: 'http://api.suppeb.com',
   paytm: {
     MerchantID: "nTdwNG42786221736985",
     Key: "#lwdRC1dz2tvdSaA",

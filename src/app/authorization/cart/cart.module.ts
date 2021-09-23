@@ -9,6 +9,7 @@ import { CartPageRoutingModule } from './cart-routing.module';
 
 import { CartPage } from './cart.page';
 import { AllInOneSDK } from '@ionic-native/all-in-one-sdk/ngx';
+import { PaymentsuccessComponent } from './paymentsuccess/paymentsuccess.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { AllInOneSDK } from '@ionic-native/all-in-one-sdk/ngx';
     CartPageRoutingModule
   ],
   providers: [AllInOneSDK],
-  declarations: [CartPage]
+  declarations: [CartPage, PaymentsuccessComponent]
 })
 export class CartPageModule { }
