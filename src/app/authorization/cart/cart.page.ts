@@ -75,6 +75,7 @@ export class CartPage implements OnInit {
   }
 
   async StartTransaction() {
+    await this.SetDeliveryAddress();
     const header = await this.$http.getHeaderToken();
     this.$http.httpCall(false).get(this.$api.goTo().OrderTransaction(this.paymentInfo.sellingPriceTotal), {}, header)
       .then((res: any) => {
@@ -89,6 +90,50 @@ export class CartPage implements OnInit {
       });
   }
 
+  SetDeliveryAddress() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        debugger;
+        const header = await this.$http.getHeaderToken();
+        this.$http.httpCall(false).post(this.$api.goTo().SetDeliveryAddress(), {
+          customerAddressId: this.defaultAddress.id
+        }, header)
+          .then((res: any) => {
+            if (res.status == 200) {
+              resolve(res);
+            } else {
+              reject(res);
+            }
+          });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  OrderAddNew() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const header = await this.$http.getHeaderToken();
+        this.$http.httpCall(false).post(this.$api.goTo().OrderAddNew(),
+          {
+            "note": "string",
+            "paymentId": 0
+          }, header)
+          .then((res: any) => {
+            if (res.status == 200) {
+              resolve(res);
+            } else {
+              reject(res);
+            }
+          });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+
   async readyForPay() {
     this.Paytm.startTransaction({
       mid: environment.paytm.MerchantID,
@@ -98,8 +143,9 @@ export class CartPage implements OnInit {
       txnToken: this.txnToken,
       isStaging: !environment.production,
       restrictAppInvoke: true
-    }).then(resp => {
+    }).then(async resp => {
       debugger
+      await this.OrderAddNew();
       let response = JSON.parse(resp.response);
       if (response.STATUS == "TXN_SUCCESS") {
         this.route.navigate(['./cart/paymentsuccess', { data: resp.response }], { replaceUrl: true });

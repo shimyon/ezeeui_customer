@@ -20,13 +20,15 @@ export class ApiRouting {
         getCustomerAddress: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/CustomerAddress/User/GetAll`,
         shopingCart: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/ShopingCart`,
         setDefaultAddress: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/CustomerAddress/SetDefaultAddress`,
+        SetDeliveryAddress: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/CustomerAddress/Order/SetDeliveryAddress`,
         createUser: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Account/User/Create`,
         loginUser: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Account/Login`,
         customerLoginUser: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/IdentityUser/Customer/LoginUsingPhoneNumber`,
         loginUsingOtp: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/IdentityUser/LoginUsingOtp`,
         refreshToken: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/IdentityUser/GenerateToken`,
         resndOtp: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/IdentityUser/Customer/ResendOtp`,
-        OrderTransaction: (orderAmout) => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/OrderHelper/Initiate?transAmount=${orderAmout}`
+        OrderTransaction: (orderAmout) => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/OrderHelper/Initiate?transAmount=${orderAmout}`,
+        OrderAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/api/Customer/Order/AddNew`
     };
 
     goTo() {
