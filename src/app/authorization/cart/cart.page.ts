@@ -25,6 +25,7 @@ export class CartPage implements OnInit {
   orderId: any;
   txnAmount: any;
   txnToken: any;
+  PaymentId: any;
   constructor(
     private Paytm: AllInOneSDK,
     private route: Router,
@@ -118,7 +119,7 @@ export class CartPage implements OnInit {
         this.$http.httpCall(false).post(this.$api.goTo().OrderAddNew(),
           {
             "note": "string",
-            "paymentId": 0
+            "paymentId": this.PaymentId
           }, header)
           .then((res: any) => {
             if (res.status == 200) {
@@ -133,6 +134,40 @@ export class CartPage implements OnInit {
     });
   }
 
+  OrderPaymentAddNew(obj) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const header = await this.$http.getHeaderToken();
+        this.$http.httpCall(false).post(this.$api.goTo().OrderPaymentAddNew(),
+          {
+            "orderId": obj.ORDERID,
+            "bankName": obj.BANKNAME,
+            "txnAmount": obj.TXNAMOUNT,
+            "txnDate": obj.TXNDATE,
+            "mid": obj.MID,
+            "respCode": obj.RESPCODE,
+            "paymentMode": obj.PAYMENTMODE,
+            "txnID": obj.TXNID,
+            "bankTxnID": obj.BANKTXNID,
+            "currency": obj.CURRENCY,
+            "gatewayName": obj.GATEWAYNAME,
+            "respMsg": obj.RESPMSG,
+            "checkSumHash": obj.CHECKSUMHASH
+          }, header)
+          .then((res: any) => {
+            debugger
+            if (res.status == 200) {
+              this.PaymentId = res;
+              resolve(res);
+            } else {
+              reject(res);
+            }
+          });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 
   async readyForPay() {
     this.Paytm.startTransaction({
@@ -144,10 +179,11 @@ export class CartPage implements OnInit {
       isStaging: !environment.production,
       restrictAppInvoke: true
     }).then(async resp => {
-      debugger
-      await this.OrderAddNew();
       let response = JSON.parse(resp.response);
       if (response.STATUS == "TXN_SUCCESS") {
+        debugger
+        await this.OrderPaymentAddNew(response);
+        await this.OrderAddNew();
         this.route.navigate(['./cart/paymentsuccess', { data: resp.response }], { replaceUrl: true });
       } else {
         alert("Trasaction Failed!");
