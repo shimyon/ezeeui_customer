@@ -5,6 +5,52 @@
 </ion-header>
 
 <ion-content class="bg_color" fullscreen>
+    <ion-list lines="none" *ngFor="let order of orders">
+        <h2>{{order.storeName | translate}}</h2>
+        <ion-item class="animate__animated animate__fadeInRight">
+            <div class="item_inner">
+                <div class="item_info d-flex" (click)="order_detail()">
+                    <div class="itme_img">
+                        <img src="assets/images/Vegetables_Fruitsact.png">
+                    </div>
+                    <div class="item_details" (click)="order_detail()">
+                        <h3 class="d-flex">
+                            Vegetables & Fruits
+                            <span class="end order_status">
+                                {{'pickup_arranged' | translate}}
+                            </span>
+                        </h3>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">3 {{'items' | translate}} | $ 11.50</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="d-flex order_info">
+                    <div class="address_info" (click)="order_detail()">
+                        <div class="from_to d-flex">
+                            <div class="icon_box d-flex">
+                                <ion-icon class="zmdi zmdi-pin"></ion-icon>
+                            </div>
+                            <h5>Silver Leaf Vegetables <span>(Union Market)</span></h5>
+                        </div>
+                        <div class="dotted_icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="from_to d-flex">
+                            <div class="icon_box d-flex">
+                                <ion-icon class="zmdi zmdi-navigation"></ion-icon>
+                            </div>
+                            <h5>Home <span>(Central Residency)</span></h5>
+                        </div>
+                    </div>
+                    <!--                     <h6 class="end" (click)="add_review()">{{'rate_now' | translate}}</h6>-->
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+
+
     <ion-list lines="none">
         <h2>{{'orders_in_process' | translate}}</h2>
         <ion-item class="animate__animated animate__fadeInRight">
@@ -20,7 +66,8 @@
                                 {{'pickup_arranged' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">3 {{'items' | translate}} | $ 11.50</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">3 {{'items' | translate}} | $ 11.50</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -61,7 +108,8 @@
                                 {{'out_for_delivery' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -104,7 +152,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -145,7 +194,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -172,7 +222,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -185,7 +235,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -226,7 +277,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -253,7 +305,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -266,7 +318,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -307,7 +360,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -334,7 +388,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -347,7 +401,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -388,7 +443,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -415,7 +471,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -428,7 +484,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -469,7 +526,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -496,7 +554,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -509,7 +567,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -550,7 +609,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -577,7 +637,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -590,7 +650,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -631,7 +692,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -658,7 +720,7 @@
                 </div>
             </div>
         </ion-item>
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -671,7 +733,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -712,87 +775,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
-                    </div>
-                </div>
-                <div class="d-flex order_info">
-                    <div class="address_info" (click)="order_detail()">
-                        <div class="from_to d-flex">
-                            <div class="icon_box d-flex">
-                                <ion-icon class="zmdi zmdi-pin"></ion-icon>
-                            </div>
-                            <h5>Hilltop Restaurant <span>(Johnson Street)</span></h5>
-                        </div>
-                        <div class="dotted_icon">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="from_to d-flex">
-                            <div class="icon_box d-flex">
-                                <ion-icon class="zmdi zmdi-navigation"></ion-icon>
-                            </div>
-                            <h5>Office <span>(World Trade Park)</span></h5>
-                        </div>
-                    </div>
-                    <h6 class="end" (click)="add_review()">{{'rate_now' | translate}}</h6>
-                </div>
-            </div>
-        </ion-item> <ion-item class="delivered animate__animated animate__fadeInRight">
-            <div class="item_inner">
-                <div class="item_info d-flex" (click)="order_detail()">
-                    <div class="itme_img">
-                        <img src="assets/images/Custom_Deliveryact.png">
-                    </div>
-                    <div class="item_details" (click)="order_detail()">
-                        <h3 class="d-flex">
-                            Custom Delivery
-                            <span class="end order_status">
-                                {{'delivered' | translate}}
-                            </span>
-                        </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
-                    </div>
-                </div>
-                <div class="d-flex order_info">
-                    <div class="address_info" (click)="order_detail()">
-                        <div class="from_to d-flex">
-                            <div class="icon_box d-flex">
-                                <ion-icon class="zmdi zmdi-pin"></ion-icon>
-                            </div>
-                            <h5>Home <span>(Central Residency)</span></h5>
-                        </div>
-                        <div class="dotted_icon">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="from_to d-flex">
-                            <div class="icon_box d-flex">
-                                <ion-icon class="zmdi zmdi-navigation"></ion-icon>
-                            </div>
-                            <h5>Home <span>(Central Residency)</span></h5>
-                        </div>
-                    </div>
-                    <h6 class="end" (click)="add_review()">{{'rate_now' | translate}}</h6>
-                </div>
-            </div>
-        </ion-item>
-
-        <ion-item class="delivered animate__animated animate__fadeInRight">
-            <div class="item_inner">
-                <div class="item_info d-flex" (click)="order_detail()">
-                    <div class="itme_img">
-                        <img src="assets/images/Food_Mealsact.png">
-                    </div>
-                    <div class="item_details" (click)="order_detail()">
-                        <h3 class="d-flex">
-                            Food
-                            <span class="end order_status">
-                                {{'delivered' | translate}}
-                            </span>
-                        </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -819,8 +803,7 @@
                 </div>
             </div>
         </ion-item>
-        
-         <ion-item class="delivered animate__animated animate__fadeInRight">
+        <ion-item class="delivered animate__animated animate__fadeInRight">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -833,7 +816,8 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
@@ -874,7 +858,92 @@
                                 {{'delivered' | translate}}
                             </span>
                         </h3>
-                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span></h4>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="d-flex order_info">
+                    <div class="address_info" (click)="order_detail()">
+                        <div class="from_to d-flex">
+                            <div class="icon_box d-flex">
+                                <ion-icon class="zmdi zmdi-pin"></ion-icon>
+                            </div>
+                            <h5>Hilltop Restaurant <span>(Johnson Street)</span></h5>
+                        </div>
+                        <div class="dotted_icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="from_to d-flex">
+                            <div class="icon_box d-flex">
+                                <ion-icon class="zmdi zmdi-navigation"></ion-icon>
+                            </div>
+                            <h5>Office <span>(World Trade Park)</span></h5>
+                        </div>
+                    </div>
+                    <h6 class="end" (click)="add_review()">{{'rate_now' | translate}}</h6>
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item class="delivered animate__animated animate__fadeInRight">
+            <div class="item_inner">
+                <div class="item_info d-flex" (click)="order_detail()">
+                    <div class="itme_img">
+                        <img src="assets/images/Custom_Deliveryact.png">
+                    </div>
+                    <div class="item_details" (click)="order_detail()">
+                        <h3 class="d-flex">
+                            Custom Delivery
+                            <span class="end order_status">
+                                {{'delivered' | translate}}
+                            </span>
+                        </h3>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="d-flex order_info">
+                    <div class="address_info" (click)="order_detail()">
+                        <div class="from_to d-flex">
+                            <div class="icon_box d-flex">
+                                <ion-icon class="zmdi zmdi-pin"></ion-icon>
+                            </div>
+                            <h5>Home <span>(Central Residency)</span></h5>
+                        </div>
+                        <div class="dotted_icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="from_to d-flex">
+                            <div class="icon_box d-flex">
+                                <ion-icon class="zmdi zmdi-navigation"></ion-icon>
+                            </div>
+                            <h5>Home <span>(Central Residency)</span></h5>
+                        </div>
+                    </div>
+                    <h6 class="end" (click)="add_review()">{{'rate_now' | translate}}</h6>
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item class="delivered animate__animated animate__fadeInRight">
+            <div class="item_inner">
+                <div class="item_info d-flex" (click)="order_detail()">
+                    <div class="itme_img">
+                        <img src="assets/images/Food_Mealsact.png">
+                    </div>
+                    <div class="item_details" (click)="order_detail()">
+                        <h3 class="d-flex">
+                            Food
+                            <span class="end order_status">
+                                {{'delivered' | translate}}
+                            </span>
+                        </h3>
+                        <h4 class="d-flex">20 Jun, 11:35 am <span class="end">2 {{'items' | translate}} | $ 10.00</span>
+                        </h4>
                     </div>
                 </div>
                 <div class="d-flex order_info">
