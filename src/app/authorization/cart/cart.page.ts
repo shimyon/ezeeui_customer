@@ -25,7 +25,7 @@ export class CartPage implements OnInit {
   orderId: any;
   txnAmount: any;
   txnToken: any;
-  PaymentId: any;
+  PaymentId: any = 0;
   constructor(
     private Paytm: AllInOneSDK,
     private route: Router,
@@ -123,11 +123,15 @@ export class CartPage implements OnInit {
           }, header)
           .then((res: any) => {
             if (res.status == 200) {
-              resolve(res);
+              let response = JSON.parse(res.data).response;
+              resolve(response);
             } else {
               reject(res);
             }
-          });
+          }).catch(e => {
+            debugger
+            reject(e);
+          });;
       } catch (e) {
         reject(e);
       }
@@ -142,8 +146,8 @@ export class CartPage implements OnInit {
           {
             "orderId": obj.ORDERID,
             "bankName": obj.BANKNAME,
-            "txnAmount": obj.TXNAMOUNT,
-            "txnDate": obj.TXNDATE,
+            "txnAmount": parseFloat(obj.TXNAMOUNT),
+            "txnDate": new Date(obj.TXNDATE),
             "mid": obj.MID,
             "respCode": obj.RESPCODE,
             "paymentMode": obj.PAYMENTMODE,
@@ -157,11 +161,15 @@ export class CartPage implements OnInit {
           .then((res: any) => {
             debugger
             if (res.status == 200) {
-              this.PaymentId = res;
+              let response = JSON.parse(res.data).response;
+              this.PaymentId = response;
               resolve(res);
             } else {
               reject(res);
             }
+          }).catch(e => {
+            debugger
+            reject(e);
           });
       } catch (e) {
         reject(e);

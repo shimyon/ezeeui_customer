@@ -1,0 +1,2 @@
+"E:\Android\platform-tools\adb" uninstall delivoo.user.ionic
+"E:\Android\platform-tools\adb" install "D:\Shimyon\Emoiss\RiteshBhai\ezeeui\ezeeui_customer\platforms\android\app\build\outputs\apk\debug\app-debug.apk"

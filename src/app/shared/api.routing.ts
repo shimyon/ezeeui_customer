@@ -28,8 +28,9 @@ export class ApiRouting {
         refreshToken: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/IdentityUser/GenerateToken`,
         resndOtp: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/IdentityUser/Customer/ResendOtp`,
         OrderTransaction: (orderAmout) => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/OrderHelper/Initiate?transAmount=${orderAmout}`,
-        OrderPaymentAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/api/Customer/Order/Payment/AddNew`,
-        OrderAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/api/Customer/Order/AddNew`
+        OrderPaymentAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Payment/Customer/AddNew`,
+        OrderAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Customer/AddNew`,
+        OrderGetAll: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Customer/GetAll`
     };
 
     goTo() {
