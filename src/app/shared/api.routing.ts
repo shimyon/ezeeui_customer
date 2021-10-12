@@ -30,7 +30,8 @@ export class ApiRouting {
         OrderTransaction: (orderAmout) => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/OrderHelper/Initiate?transAmount=${orderAmout}`,
         OrderPaymentAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Payment/Customer/AddNew`,
         OrderAddNew: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Customer/AddNew`,
-        OrderGetAll: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Customer/GetAll`
+        OrderGetAll: () => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/Customer/GetAll`,
+        OrderGetById: (orderid) => `${this.AUTH_SERVER_ADDRESS.API_URL}/api/Order/GetById?orderId=${orderid}`
     };
 
     goTo() {

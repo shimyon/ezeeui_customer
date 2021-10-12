@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content class="bg_color" fullscreen>
-    <ion-list lines="none" *ngFor="let order of orders">
+    <ion-list lines="none">
         <h2>{{'orders_in_process' | translate}}</h2>
-        <ion-item class="animate__animated animate__fadeInRight">
+        <ion-item class="animate__animated animate__fadeInRight" *ngFor="let order of orders">
             <div class="item_inner">
                 <div class="item_info d-flex" (click)="order_detail()">
                     <div class="itme_img">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="d-flex order_info">
-                    <div class="address_info" (click)="order_detail()">
+                    <div class="address_info" (click)="order_detail(order.id)">
                         <div class="from_to d-flex">
                             <div class="icon_box d-flex">
                                 <ion-icon class="zmdi zmdi-pin"></ion-icon>

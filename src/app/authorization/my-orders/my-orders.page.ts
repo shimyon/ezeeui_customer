@@ -30,8 +30,12 @@ export class MyOrdersPage implements OnInit {
     this.GetllOrders();
   }
 
-  order_detail() {
-    this.route.navigate(['./order-detail']);
+  order_detail(orderId) {
+    this.route.navigate(['./order-detail', {
+      data: JSON.stringify({
+        id: orderId
+      })
+    }]);
   }
   add_review() {
     this.route.navigate(['./add-review']);

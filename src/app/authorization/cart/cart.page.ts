@@ -76,7 +76,7 @@ export class CartPage implements OnInit {
   }
 
   async StartTransaction() {
-    await this.SetDeliveryAddress();
+    // await this.SetDeliveryAddress(); // Not require for now
     const header = await this.$http.getHeaderToken();
     this.$http.httpCall(false).get(this.$api.goTo().OrderTransaction(this.paymentInfo.sellingPriceTotal), {}, header)
       .then((res: any) => {

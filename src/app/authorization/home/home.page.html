@@ -34,7 +34,8 @@
         <div class="hthumb-section" *ngIf="serviceList.length">
             <div *ngFor="let item of serviceList" class="hthumb-service" (click)="stores(item.id)">
                 <div class="hthumb hthumb1" *ngIf="item.isPrimary">
-                    <img src="{{item.imageUrl|asUrl:'groceries'}}" alt="img">
+                    <!-- <img src="{{item.imageUrl|asUrl:'groceries'}}" alt="img"> -->
+                    <img src="{{item.displayName + '.png'|asUrl:'groceries'}}" alt="img">
                     <div class="freedel" *ngIf="setting['Free_Delivery']===item.deliveryChargesCode">
                         Free Delivery
                     </div>

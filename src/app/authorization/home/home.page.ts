@@ -48,6 +48,7 @@ export class HomePage implements OnInit {
     this.$http.httpCall(false).get(this.$api.goTo().serviceAvailableGetAll(), {}, header)
       .then((res: any) => {
         if (res.status == 200) {
+          debugger
           this.serviceList = JSON.parse(res.data).response;
         }
       });
