@@ -9,32 +9,34 @@ import { HttpService } from 'src/services/httpCall/http.service';
   styleUrls: ['./stores.page.scss'],
 })
 export class StoresPage implements OnInit {
-  storeList=[];
-  constructor(private route: Router,private $api:ApiRouting,private $http: HttpService) { }
+  storeList = [];
+  constructor(private route: Router, private $api: ApiRouting, private $http: HttpService) { }
 
   ngOnInit() {
-   this.getStoreList();
+    this.getStoreList();
   }
 
-getStoreList=async()=>{
-  const header = await this.$http.getHeaderToken();
- let payload={
-  pinCode: "191103",
-  latitude: "32.556659",
-  longitude: "76.118694",
-  serviceId: 1
- }
-  this.$http.httpCall(true).post(this.$api.goTo().storeGetAll(), payload, header)
-    .then((res: any) => {
-      if (res.status == 200) {
-        let getData = JSON.parse(res.data);
-         this.storeList=getData['response'].storeList;
-      }
-    });
-}
+  getStoreList = async () => {
+    const header = await this.$http.getHeaderToken();
+    debugger
+    let address = JSON.parse(localStorage.getItem("defultAddress"));
+    let payload = {
+      pinCode: address.pinCode,
+      latitude: address.latitude,
+      longitude: address.longitude,
+      serviceId: 1
+    }
+    this.$http.httpCall(true).post(this.$api.goTo().storeGetAll(), payload, header)
+      .then((res: any) => {
+        if (res.status == 200) {
+          let getData = JSON.parse(res.data);
+          this.storeList = getData['response'].storeList;
+        }
+      });
+  }
 
 
-items() {
+  items() {
     this.route.navigate(['./item-category']);
   }
 }

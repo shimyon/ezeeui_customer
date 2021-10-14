@@ -1,7 +1,7 @@
 import { IfStmt } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { resolve } from 'dns';
 import { StorageService } from 'src/services/storage/storage.service';
@@ -38,7 +38,9 @@ export class SetLocationPage implements OnInit {
   validationMessages: any;
   addressType: any;
   isValid = false;
+  defaultAddress: any;
   constructor(private navCtrl: NavController,
+    private route: Router,
     private activeRoute: ActivatedRoute,
     private $http: HttpService,
     private $api: ApiRouting,
@@ -97,6 +99,9 @@ export class SetLocationPage implements OnInit {
       if (this.openFrom == 'cart') {
         this.navCtrl.navigateForward(['./cart']);
       }
+      else {
+        this.navCtrl.navigateRoot(['./tabs']);
+      }
     } else {
       this.navCtrl.navigateRoot(['./tabs']);
     }
@@ -110,6 +115,8 @@ export class SetLocationPage implements OnInit {
           if (res.status == 200) {
             const addressInfo = JSON.parse(res.data).response;
             this.$storage.setAddress(addressInfo);
+            this.defaultAddress = addressInfo.find(f => f.isDefaultAddress);
+            localStorage.setItem("defultAddress", JSON.stringify(this.defaultAddress));
           }
           result(true);
         }, reject);

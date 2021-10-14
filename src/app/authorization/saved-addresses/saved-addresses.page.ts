@@ -36,6 +36,7 @@ export class SavedAddressesPage implements OnInit {
         if (res.status == 200) {
           this.deliveryLocation = JSON.parse(res.data).response;
           this.defaultAddress = this.deliveryLocation.find(f => f.isDefaultAddress);
+          localStorage.setItem("defultAddress", JSON.stringify(this.defaultAddress));
         }
       });
   }
@@ -51,9 +52,10 @@ export class SavedAddressesPage implements OnInit {
       customerAddressId: addressInfo.id
     }
     this.$http.httpCall(false).post(this.$api.goTo().setDefaultAddress(), payload, header)
-      .then((res: any) => {
+      .then(async (res: any) => {
         if (res.status == 200) {
           addressInfo.isDefaultAddress = true;
+          await this.getSetAddress();
           this.Continue();
         }
       });
