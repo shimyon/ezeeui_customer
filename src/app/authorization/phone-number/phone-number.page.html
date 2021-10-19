@@ -14,7 +14,7 @@
             <img src="assets/images/Logo.png" class="light_theme_logo">
             <img src="assets/images/logo_user_dark.png" class="dark_theme_logo">
         </div>
-       
+
     </div>
 
 
@@ -25,17 +25,25 @@
     </div>
     <div class="form">
         <ion-list lines="none">
-            
-                <ion-item lines="none">
-                    <div class="item_inner d-flex">
-                        <h3>+91</h3>
-                        <ion-input mode="md" [(ngModel)]="phoneNumber"  placeholder="{{'enter_mobile_number' | translate}}"  maxlength="10" (keyup)="isNumber($event)"></ion-input>
-                        <ion-button size="large" class="btn end" (click)="login()" [disabled]="phoneNumber.length!==10">{{'continue' | translate}}</ion-button>
-                    </div>
-                </ion-item>
-           
-           
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <h3>+91</h3>
+                    <ion-input mode="md" [(ngModel)]="phoneNumber" placeholder="{{'enter_mobile_number' | translate}}"
+                        maxlength="10" (keyup)="isNumber($event)"></ion-input>
+                    <ion-button size="large" class="btn end" (click)="login()" [disabled]="phoneNumber.length!==10">
+                        {{'continue' | translate}}</ion-button>
+                </div>
+            </ion-item>
+
         </ion-list>
     </div>
-    
+    <div class="form" style="margin: 0%; padding: 0%;">
+        <ion-item href="http://suppeb.com/terms&Conditions.html"
+            style="background-color: skyblue; padding: 2%; margin: 0%;">
+            <ion-label>I accept the Terms and Condition</ion-label>
+            <ion-checkbox style="margin: 9px 0px;"></ion-checkbox>
+        </ion-item>
+    </div>
+
 </ion-footer>

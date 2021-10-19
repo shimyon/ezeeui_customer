@@ -264,5 +264,5 @@
     <plugin name="cordova-plugin-geolocation">
         <variable name="GPS_REQUIRED" value="true" />
     </plugin>
-    <engine name="android" spec="~8.0.0" />
+    <engine name="android" spec="^8.0.0" />
 </widget>

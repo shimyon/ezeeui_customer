@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>component</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <h1>Slide 1</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 2</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-row class="ion-margin">
+    <ion-col size="6" *ngFor="let data of topService">
+      <ion-card class="ion-no-margin">
+        <img
+          style="width: 100%; height: 100%; border-radius: 5%"
+          [src]="data.image"
+          alt=""
+        />
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-slides pager="true" [options]="slideOpts2">
+    <ion-slide>
+      <h1>Slide 1</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 2</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 4</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 5</h1>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

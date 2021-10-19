@@ -68,7 +68,7 @@ ion-header {
                         max-width: fit-content;
                         font-size: 1.35rem !important;
                         font-weight: 500 !important;
-                        letter-spacing: .4px;
+                        letter-spacing: 0.4px;
                         &::part(icon) {
                             display: none !important;
                         }
@@ -108,9 +108,13 @@ ion-header {
     }
 }
 
+ion-slides {
+    height: 20%;
+}
+
 .item-container {
     padding: 8px 0px;
-    --animate-duration: .3s;
+    --animate-duration: 0.3s;
     h2 {
         margin: 0;
         font-size: 1.2rem;
@@ -147,28 +151,28 @@ ion-header {
             }
             &.animate__animated.animate__zoomInUp {
                 &:nth-child(1) {
-                    --animate-duration: .15s;
+                    --animate-duration: 0.15s;
                 }
                 &:nth-child(2) {
-                    --animate-duration: .2s;
+                    --animate-duration: 0.2s;
                 }
                 &:nth-child(3) {
-                    --animate-duration: .25s;
+                    --animate-duration: 0.25s;
                 }
                 &:nth-child(4) {
-                    --animate-duration: .3s;
+                    --animate-duration: 0.3s;
                 }
                 &:nth-child(5) {
-                    --animate-duration: .35s;
+                    --animate-duration: 0.35s;
                 }
                 &:nth-child(6) {
-                    --animate-duration: .4s;
+                    --animate-duration: 0.4s;
                 }
                 &:nth-child(7) {
-                    --animate-duration: .45s;
+                    --animate-duration: 0.45s;
                 }
                 &:nth-child(8) {
-                    --animate-duration: .5s;
+                    --animate-duration: 0.5s;
                 }
             }
         }
@@ -179,7 +183,7 @@ ion-header {
 }
 .hthumb-section {
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     margin-bottom: 0px;
     flex-wrap: wrap;
 }
@@ -214,7 +218,7 @@ ion-header {
     background: #ffffffcc;
     padding: 3px;
     position: relative;
-    font-weight: normal;;
+    font-weight: normal;
 }
 
 .freedel {
@@ -249,7 +253,6 @@ ion-header {
     z-index: 9999;
     position: absolute;
     bottom: 20px;
-   
 }
 .disabled {
     pointer-events: none;
@@ -282,9 +285,9 @@ ion-header {
     position: relative;
 }
 
-.home-pro-list li img{
-    width:80px;
-    height:77px;
+.home-pro-list li img {
+    width: 80px;
+    height: 77px;
     position: relative;
     top: 13px;
 }
@@ -298,10 +301,8 @@ ion-header {
     -webkit-box-orient: vertical;
     margin-top: 5px;
     margin-bottom: 0;
-
-
 }
-.item-container  h3 span {
+.item-container h3 span {
     font-size: 17px;
     margin-left: 18px;
 }

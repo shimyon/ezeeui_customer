@@ -15,6 +15,30 @@ export class HomePage implements OnInit {
   location: string = "home";
   setting = appConfig
   serviceList = [];
+
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400,
+  };
+
+  slideOpts2 = {
+    initialSlide: 1,
+    slidesPerView: 4,
+    speed: 400,
+  };
+
+  topService =
+    {
+      "Groceries & Essentials": "assets/images/placeholder/Groceries & Essentials.png",
+
+      "Fruits & Vegetables": "assets/images/placeholder/Fruits & Vegetables.png",
+
+      "Restaurants": "assets/images/placeholder/Restaurants.png",
+
+      "Pickup & Drop": "assets/images/placeholder/Pickup & Drop.png"
+    }
+
+
   constructor(
     private route: Router,
     private $cart: CartService,

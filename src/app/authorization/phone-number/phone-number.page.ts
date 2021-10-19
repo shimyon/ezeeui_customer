@@ -34,7 +34,6 @@ export class PhoneNumberPage implements OnInit {
 
 
   login() {
-
     const payload = {
       phoneNumber: this.phoneNumber,
       otp: "",
@@ -80,7 +79,6 @@ export class PhoneNumberPage implements OnInit {
 
 
   isNumber(evt) {
-    debugger;
     evt = (evt) ? evt : window.event;
     const charCode = (evt.which) ? evt.which : evt.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {

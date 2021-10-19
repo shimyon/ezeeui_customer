@@ -36,7 +36,6 @@ ion-header {
 }
 
 .map {
-   
     overflow: hidden;
 
     img {
@@ -61,12 +60,12 @@ ion-footer {
     bottom: 0;
     left: 0;
     width: 100%;
-z-index: 999;
+    z-index: 999;
     .footer_content {
         width: 100%;
         height: 130px;
         overflow: hidden;
-        transition: all .3s;
+        transition: all 0.3s;
     }
 
     .current_location {
@@ -116,7 +115,7 @@ z-index: 999;
     .form {
         padding: 0;
         padding-top: 34px;
-        transition: all .5s;
+        transition: all 0.5s;
         background: var(--white);
 
         ion-list {
@@ -201,7 +200,7 @@ z-index: 999;
                             }
 
                             &::before {
-                                content: '';
+                                content: "";
                                 position: absolute;
                                 top: 0;
                                 left: 0;
@@ -211,7 +210,7 @@ z-index: 999;
                                 height: 0;
                                 margin: auto;
                                 background: var(--primary);
-                                transition: all .3s;
+                                transition: all 0.3s;
                                 border-radius: 50px;
                             }
 
@@ -243,17 +242,14 @@ z-index: 999;
                                             color: var(--white);
                                         }
                                     }
-
-
                                 }
-
                             }
                         }
                     }
                 }
             }
         }
-        .validation-errors{
+        .validation-errors {
             position: relative;
             bottom: 29px;
             color: #de2a01;
@@ -268,15 +264,19 @@ z-index: 999;
         }
     }
 
+    .buttonbtn {
+        --background: gray !important;
+    }
+
     &.active {
         .form {
             display: block;
         }
 
         .footer_content {
-           height: 472px;
+            height: 472px;
         }
-        .fl_left{
+        .fl_left {
             float: right;
             pointer-events: visible !important;
         }
@@ -288,6 +288,7 @@ z-index: 999;
 
             &.btnB {
                 display: none;
+                --background: var(--text-dark);
             }
         }
     }
