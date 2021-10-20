@@ -7,7 +7,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 
@@ -16,15 +16,15 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-@import '~animate.css/animate.min.css';
+@import "~animate.css/animate.min.css";
 :root {
     --primary: #7ac81e;
-    --secondary: #91D04E;
+    --secondary: #91d04e;
     --bg-color: #f8f9fd;
     --text-light: #b3b3b3;
     --text-dark: #616161;
     --text-black: #000;
-    --red_color: #FF0000;
+    --red_color: #ff0000;
     --white: #fff;
     --transparent: rgba(0, 0, 0, 0);
 }
@@ -226,7 +226,7 @@ ion-header {
         ion-textarea,
         ion-input {
             --padding: 0 !important;
-            font-size: .95rem !important;
+            font-size: 0.95rem !important;
             font-weight: 400 !important;
             letter-spacing: 0;
             --padding-start: 0 !important;
@@ -259,10 +259,10 @@ ion-header {
         h5 {
             margin: 0;
             color: var(--primary);
-            font-size: .85rem;
+            font-size: 0.85rem;
             height: 45px;
             line-height: 55px;
-            letter-spacing: .4px;
+            letter-spacing: 0.4px;
         }
     }
     ion-row {
@@ -272,7 +272,7 @@ ion-header {
 
 ion-modal {
     --background: rgba(0, 0, 0, 0) !important;
-    --backdrop-opacity: .1 !important;
+    --backdrop-opacity: 0.1 !important;
 }
 
 .alert-wrapper {
@@ -345,7 +345,7 @@ app-set-location {
             input {
                 box-shadow: none !important;
                 padding: 0 !important;
-                font-size: .97rem !important;
+                font-size: 0.97rem !important;
                 font-weight: 500 !important;
             }
         }
@@ -354,16 +354,16 @@ app-set-location {
 
 app-home {
     .swiper-pagination {
-        bottom: 20px !important;
-        text-align: right;
-        padding: 0 20px;
+        bottom: 0px !important;
+        text-align: center;
+        padding: 10 10px;
         .swiper-pagination-bullet {
             background: #bebebe !important;
             width: 6px;
             height: 6px;
             border-radius: 50%;
             margin: 0 3px !important;
-            opacity: .5 !important;
+            opacity: 0.5 !important;
             &.swiper-pagination-bullet-active {
                 opacity: 1 !important;
                 background: var(--secondary) !important;

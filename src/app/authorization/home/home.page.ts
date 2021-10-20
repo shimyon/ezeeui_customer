@@ -27,6 +27,12 @@ export class HomePage implements OnInit {
     speed: 400,
   };
 
+  slideOpts3 = {
+    initialSlide: 1,
+    slidesPerView: 3,
+    speed: 400,
+  };
+
   topService =
     {
       "Groceries & Essentials": "assets/images/placeholder/Groceries & Essentials.png",

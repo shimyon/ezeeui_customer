@@ -6,7 +6,7 @@
                     <ion-item lines="none">
                         <div class="item_inner d-flex" (click)="clickAddress()">
                             <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
-                            {{'home' | translate}}
+                            {{'Stores' | translate}}
 
                             <!-- <ion-icon class="zmdi zmdi-chevron-down ion-text-end"></ion-icon> -->
                         </div>
@@ -33,20 +33,20 @@
 </ion-header>
 
 <ion-content>
-    <ion-slides [options]="slideOpts">
+    <ion-slides pager="true" [options]="slideOpts" style="text-align: center; bottom: 0px !important;">
         <ion-slide>
-            <ion-card>
-                <h1>Slide 1</h1>
+            <ion-card class="card-size">
+                <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
         <ion-slide>
-            <ion-card>
-                <h1>Slide 2</h1>
+            <ion-card class="card-size">
+                <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
         <ion-slide>
-            <ion-card>
-                <h1>Slide 3</h1>
+            <ion-card class="card-size">
+                <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
     </ion-slides>
@@ -186,90 +186,142 @@
             </ul>
         </div>
     </div> -->
-    <ion-slides [options]="slideOpts2">
+    <!-- <ion-slides [options]="slideOpts2">
         <ion-slide>
             <ion-card>
-                <h1>Slide 1</h1>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 2</h1>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 3</h1>
+                <h1> Secondary Services</h1>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 4</h1>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 5</h1>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 6</h1>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 7</h1>
+                <h1> Secondary Services</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 8</h1>
+                <h1> Secondary Services</h1>
+            </ion-card>
+        </ion-slide>
+    </ion-slides> -->
+
+
+
+    <ion-slides [options]="slideOpts3">
+        <h1> Coupons for you</h1>
+        <ion-slide>
+            <ion-card>
+                <h1> Coupons for you</h1>
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 9</h1>
+                <h1> Coupons for you</h1>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <h1> Coupons for you</h1>
             </ion-card>
         </ion-slide>
     </ion-slides>
-
-    <ion-card>can't find</ion-card>
 
     <ion-slides [options]="slideOpts">
+        <h1> Top Brands for you</h1>
         <ion-slide>
             <ion-card>
-                <h1>Slide 1</h1>
+                <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 2</h1>
+                <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 3</h1>
+                <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
+
+    <ion-slides [options]="slideOpts">
+        <h1> Express Grocery Delivery</h1>
+        <ion-slide>
+            <ion-card>
+                <img src="assets\images\placeholder\slider_image.jpg">
+                <img src="assets\images\placeholder\slider_image.jpg">
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <img src="assets\images\placeholder\slider_image.jpg">
+                <img src="assets\images\placeholder\slider_image.jpg">
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+            <ion-card>
+                <img src="assets\images\placeholder\slider_image.jpg">
+                <img src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
     </ion-slides>
 
     <ion-slides [options]="slideOpts">
+        <h1> Best Restaurants in Safety</h1>
         <ion-slide>
             <ion-card>
-                <h1>Slide 1</h1>
+                <img src="assets\images\placeholder\slider_image.jpg">
+                <img src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 2</h1>
+                <img src="assets\images\placeholder\slider_image.jpg">
+                <img src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
         <ion-slide>
             <ion-card>
-                <h1>Slide 3</h1>
+                <img src="assets\images\placeholder\slider_image.jpg">
+                <img src="assets\images\placeholder\slider_image.jpg">
             </ion-card>
         </ion-slide>
     </ion-slides>
+
+
+    <ion-card>
+        <h1>can't find</h1>
+        <img class="img-size" src="assets\images\placeholder\slider_image.jpg">
+    </ion-card>
 
 </ion-content>
