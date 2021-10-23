@@ -13,6 +13,7 @@ import { StorageService } from 'src/services/storage/storage.service';
 })
 export class PhoneNumberPage implements OnInit {
   phoneNumber = "";
+  termsandcondition = false;
   constructor(
     private _storageService: StorageService,
     private route: Router,

@@ -11,6 +11,7 @@ import { ChatPage } from '../chat/chat.page';
 })
 export class OrderDetailPage implements OnInit {
   data: any = {};
+  order: any = {};
 
   fabAction = false;
   constructor(
@@ -26,6 +27,7 @@ export class OrderDetailPage implements OnInit {
   ionViewDidEnter() {
     let paydata = this.activeRoute.snapshot.paramMap.get('data');
     this.data = JSON.parse(paydata);
+    this.GetOrderDetails();
     debugger
   }
 
@@ -38,6 +40,9 @@ export class OrderDetailPage implements OnInit {
           .then((res: any) => {
             if (res.status == 200) {
               let response = JSON.parse(res.data).response;
+              debugger
+              console.log(response)
+              this.order = response;
               resolve(response);
             } else {
               reject(res);

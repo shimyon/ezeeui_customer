@@ -2,7 +2,7 @@
     padding: 0 20px;
     margin: auto;
     width: 100%;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 
     .logo {
         display: block;
@@ -31,12 +31,15 @@
     }
 }
 
+ion-item.mariginpadding {
+    margin: 0% !important;
+}
 .animate__animated.animate__fadeInUp {
-    --animate-duration: .2s;
+    --animate-duration: 0.2s;
 }
 
 .animate__animated.animate__zoomInUp {
-    --animate-duration: .2s;
+    --animate-duration: 0.2s;
 }
 
 ion-footer {
@@ -79,13 +82,12 @@ ion-footer {
                     --border-radius: 50px;
                     width: fit-content;
                     height: 35px;
-                    font-size: .9rem;
+                    font-size: 0.9rem;
                     min-width: 94px;
                     --padding-start: 10px;
                     --padding-end: 10px;
                 }
             }
-
         }
     }
 
@@ -126,11 +128,10 @@ ion-footer {
                     text-align: center;
                     width: 100%;
                     left: 0;
-
                 }
 
                 &.Facebook {
-                    background: #3A559F;
+                    background: #3a559f;
                 }
 
                 &.Google {
@@ -146,6 +147,5 @@ ion-footer {
                 }
             }
         }
-
     }
 }

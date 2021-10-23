@@ -9,11 +9,11 @@
         <h2>{{'orders_in_process' | translate}}</h2>
         <ion-item class="animate__animated animate__fadeInRight" *ngFor="let order of orders">
             <div class="item_inner">
-                <div class="item_info d-flex" (click)="order_detail()">
+                <div class="item_info d-flex" (click)="order_detail(order.id)">
                     <div class="itme_img">
                         <img src="assets/images/Custom_Deliveryact.png">
                     </div>
-                    <div class="item_details" (click)="order_detail()">
+                    <div class="item_details" (click)="order_detail(order.id)">
                         <h3 class="d-flex">
                             {{order.storeName}}
                             <span class="end order_status">

@@ -115,10 +115,12 @@ card-size {
     margin-top: 0% !important;
     height: 100% !important;
     width: 100% !important;
+    box-shadow: none;
 }
 img-size {
-    height: 100% !important;
+    height: 70% !important;
     width: 100% !important;
+    border-radius: 5%;
 }
 
 .item-container {
