@@ -88,11 +88,13 @@ export class HomePage implements OnInit {
     this.route.navigate(['./cart']);
   }
 
-  stores(_id) {
-    this.route.navigate(['./stores', { id: _id }]);
+  stores(data) {
+    debugger
+    localStorage.setItem("serviceId", data.id)
+    this.route.navigate(['./stores', ({ data: JSON.stringify({ serviceId: data.id, displayName: data.displayName }) })]);
   }
 
-  custom_delivery() {
+  custom_delivery(): void {
     this.route.navigate(['./custom-delivery']);
   }
 

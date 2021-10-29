@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiRouting } from 'src/app/shared';
 import { HttpService } from 'src/services/httpCall/http.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-stores',
@@ -10,15 +10,26 @@ import { HttpService } from 'src/services/httpCall/http.service';
 })
 export class StoresPage implements OnInit {
   storeList = [];
-  constructor(private route: Router, private $api: ApiRouting, private $http: HttpService) { }
+  data: any = {};
+  constructor(
+    private route: Router,
+    private $api: ApiRouting,
+    private $http: HttpService,
+    private activeRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.getStoreList();
   }
 
+  ionViewDidEnter() {
+    debugger
+    let paydata = this.activeRoute.snapshot.paramMap.get('data');
+    this.data = JSON.parse(paydata);
+  }
+
   getStoreList = async () => {
     const header = await this.$http.getHeaderToken();
-    debugger
     let address = JSON.parse(localStorage.getItem("defultAddress"));
     let payload = {
       pinCode: address.pinCode,

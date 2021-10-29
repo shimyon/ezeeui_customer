@@ -18,7 +18,9 @@
                             {{'pickup_arranged' | translate}}
                         </span>
                     </h3>
-                    <h4 class="d-flex">20 Jun, 11:35 am <span class="end">$ 11.50 | COD</span></h4>
+                    <h4 class="d-flex">{{ order.orderDto.orderDateFormatted }}<span class="end">Rs.{{
+                            order.orderDto.mrpTotal }} | COD</span>
+                    </h4>
                 </div>
             </div>
             <div class="address_info">
@@ -26,7 +28,7 @@
                     <div class="icon_box d-flex">
                         <ion-icon class="zmdi zmdi-pin"></ion-icon>
                     </div>
-                    <h5>Silver Leaf Vegetables <span>(Union Market)</span></h5>
+                    <h5>Silver Leaf Vegetables <span>({{ order.orderDto.storeLandmark }})</span></h5>
                 </div>
                 <div class="dotted_icon">
                     <span></span>
@@ -37,7 +39,7 @@
                     <div class="icon_box d-flex">
                         <ion-icon class="zmdi zmdi-navigation"></ion-icon>
                     </div>
-                    <h5>Home <span>(Central Residency)</span></h5>
+                    <h5>Home <span>({{ order.orderDto.customerMailingAddress }})</span></h5>
                 </div>
             </div>
         </div>
@@ -72,35 +74,13 @@
         </ion-item>
 
         <div class="item_list">
-            <ion-item>
+            <ion-item *ngFor="let item of order.orderDetail">
                 <div class="item_inner">
                     <div class="text_box">
-                        <h3>Fresh Red Onions</h3>
+                        <h3>{{ item.itemName }}</h3>
                         <div class="buttons d-flex">
-                            <h5>1 kg x 1</h5>
-                            <h4 class="ion-text-end end">$ 3.00</h4>
-                        </div>
-                    </div>
-                </div>
-            </ion-item>
-            <ion-item>
-                <div class="item_inner">
-                    <div class="text_box">
-                        <h3>Fresh Cauliflower</h3>
-                        <div class="buttons d-flex">
-                            <h5>1 kg x 1</h5>
-                            <h4 class="ion-text-end end">$ 4.50</h4>
-                        </div>
-                    </div>
-                </div>
-            </ion-item>
-            <ion-item>
-                <div class="item_inner">
-                    <div class="text_box">
-                        <h3>Fresh Red Tomattoes</h3>
-                        <div class="buttons d-flex">
-                            <h5>1 kg x 1</h5>
-                            <h4 class="ion-text-end end">$ 2.50</h4>
+                            <h5>1 kg x {{ item.quantity }}</h5>
+                            <h4 class="ion-text-end end">Rs.{{ item.sellingPrice }}</h4>
                         </div>
                     </div>
                 </div>
@@ -112,7 +92,8 @@
                 <div class="item_inner d-flex">
                     <div class="icon_box ion-text-start"><img src="assets/images/ic_instruction.png"></div>
                     <div class="input_box">
-                        <ion-input mode="md" type="name" readonly="boolean" value="Keep tomatoes in saperate bag please."></ion-input>
+                        <ion-input mode="md" type="name" readonly="boolean"
+                            value="Keep tomatoes in saperate bag please."></ion-input>
                     </div>
                 </div>
             </ion-item>
@@ -122,17 +103,22 @@
             <h1>{{'payment_info' | translate}}</h1>
             <ion-item>
                 <div class="item_inner">
-                    <h3 class="d-flex">{{'sub_total' | translate}} <span class="end">$ 10.00</span></h3>
+                    <h3 class="d-flex">{{'sub_total' | translate}}
+                        <span class="end">Rs.{{ order.orderDto.mrpTotal }}</span>
+                    </h3>
                 </div>
             </ion-item>
             <ion-item>
                 <div class="item_inner">
-                    <h3 class="d-flex">{{'service_fee' | translate}} <span class="end">$ 1.50</span></h3>
+                    <h3 class="d-flex">{{'service_fee' | translate}} <span class="end">Rs.000</span></h3>
                 </div>
             </ion-item>
             <ion-item>
                 <div class="item_inner">
-                    <h2 class="d-flex">{{'amount_to_pay' | translate}} <span class="end">$ 11.50</span></h2>
+                    <h2 class="d-flex">{{'amount_to_pay' | translate}}
+                        <span class="end">Rs.{{ order.orderDto.mrpTotal }}
+                        </span>
+                    </h2>
                 </div>
             </ion-item>
         </div>
@@ -140,7 +126,7 @@
 </ion-content>
 
 <ion-footer class="ion-no-border d-flex" [ngClass]="fabAction ? 'active' : ''">
-    <h2>3 {{'items' | translate}}</h2>
+    <h2>{{ order.orderDto.itemCount }} {{'items' | translate}}</h2>
     <h6 class="end d-flex" (click)="toggleFab()">
         <span>{{'view_order' | translate}}</span>
         <span>{{'cloes' | translate}}</span>

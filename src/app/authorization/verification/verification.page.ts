@@ -46,7 +46,7 @@ export class VerificationPage implements OnInit {
         this.$nativeStorage.setNative(ACTION_TYPE.ACCESS_TOKEN, tokenDetail.accessToken).then(nativeRes => {
           // this.route.navigate(['./set-location']);
           // this.route.navigate(['./saved-addresses']);
-          this.route.navigateByUrl('/saved-addresses', { replaceUrl: true })
+          this.route.navigateByUrl('/tabs', { replaceUrl: true })
 
         });
       }

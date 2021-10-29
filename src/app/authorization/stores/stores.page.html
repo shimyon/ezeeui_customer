@@ -4,12 +4,13 @@
             <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-title class="store-header">
-            Vegetable & Fruits
+            {{data.displayName}}
         </ion-title>
     </ion-toolbar>
     <div class="search_box">
         <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
-        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_item_or_store' | translate}}"></ion-searchbar>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_item_or_store' | translate}}">
+        </ion-searchbar>
     </div>
 </ion-header>
 
@@ -25,7 +26,7 @@
                     <h3>{{item.storeName}}</h3>
                     <h4 class="d-flex">
                         <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
-                       {{item.distance}} km <span></span> {{item.cityName}}
+                        {{item.distance}} km <span></span> {{item.cityName}}
                     </h4>
 
                     <h4 class="d-flex">
@@ -35,7 +36,7 @@
 
                     <h5 class="d-flex" *ngIf="item.rating!=null">
                         <ion-icon class="zmdi zmdi-star ion-text-start"></ion-icon>
-                       {{item.rating}}
+                        {{item.rating}}
                     </h5>
                 </div>
             </div>

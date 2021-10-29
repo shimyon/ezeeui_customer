@@ -11,7 +11,11 @@ import { ChatPage } from '../chat/chat.page';
 })
 export class OrderDetailPage implements OnInit {
   data: any = {};
-  order: any = {};
+  order: any = {
+    orderDto: {},
+    orderDetail: []
+  };
+
 
   fabAction = false;
   constructor(
